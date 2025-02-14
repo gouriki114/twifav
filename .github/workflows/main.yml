@@ -1,0 +1,24 @@
+name: Deploy App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v2
+
+      - name: Node.js をセットアップ
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: 依存関係をインストール
+        run: npm install
+
+      - name: アプリを起動
+        run: node server.js
